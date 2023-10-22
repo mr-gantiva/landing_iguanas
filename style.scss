@@ -1,149 +1,203 @@
 :root {
-    --bg-body: #000;
-    --color-primario: #fafaf5;
-    --bg-section: #1E1A13;
+  --bg-body: #000;
+  --color-primario: #fafaf5;
+  --bg-section: #1e1a13;
 }
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body::-webkit-scrollbar {
+  width: 15px;
+}
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(67, 134, 0);
+  border-radius: 8px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(92, 184, 0);
 }
 
 body {
-    font-family: 'Raleway', sans-serif;
-    background: var(--bg-body);
+  font-family: "Raleway", sans-serif;
+  background: var(--bg-body);
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .header-landing {
-    display: flex;
-    justify-content: center;
-    .landing-titulo{
-        h1 {
-            font-size: 50px;
-            color: var(--color-primario);
-            font-weight: lighter;
-        }
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  .landing-titulo {
+    h1 {
+      font-size: 3.125rem;
+      color: var(--color-primario);
+      font-weight: lighter;
     }
+  }
 }
 
 .contenedor-banner {
+  width: 100%;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    .landing-banner {
-        img {
-            width: 100%;
-            object-fit: contain;
-        }
+    height: 200px;
+    z-index: 1000;
+    background: linear-gradient(to bottom, #000, transparent);
+  }
+  .landing-banner {
+    img {
+      width: 100%;
+      object-fit: contain;
     }
+  }
 }
 
 .landing-info {
-    display: flex;
-    justify-content: center;
-    gap: 100px;
-    padding: 80px;
-    .contenedor-texto {
-        display: flex;
-        align-items: center;
-        max-width: 500px;
-        height: auto;
-        p {
-            color: var(--color-primario);
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  padding: 80px;
+  scroll-snap-align: start;
 
-        }
+  .contenedor-texto {
+    display: flex;
+    align-items: center;
+    max-width: 500px;
+    height: auto;
+    p {
+      color: var(--color-primario);
     }
-    .contenedor-img-info {
-        max-width: 500px;
-        img {
-            width: 100%;
-        }
+  }
+  .contenedor-img-info {
+    max-width: 500px;
+    img {
+      width: 100%;
+      transition: all 0.5s;
     }
+    &::before {
+      transform: translateX(900px);
+    }
+  }
 }
 
 .contendor-caracteristicas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+  background: var(--bg-section);
+  .titulo-caracteristicas {
+    h2 {
+      color: var(--color-primario);
+      font-size: 2.5rem;
+      font-weight: 500;
+    }
+  }
+  .contenedor-img-caracteristicas {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    background: var(--bg-section);
-    .titulo-caracteristicas {
-        h2 {
-            color: var(--color-primario);
-            font-size: 40px;
-            font-weight: 500;
-        }
+    .box-icono {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-width: 300px;
+      min-height: 250px;
+      i {
+        color: var(--color-primario);
+        font-size: 60px;
+      }
+      span {
+        color: var(--color-primario);
+        font-size: 25px;
+        margin-top: 20px;
+        font-weight: lighter;
+      }
     }
-    .contenedor-img-caracteristicas {
-        display: flex;
-        justify-content: center;
-        .box-icono {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-width: 300px;
-            min-height: 250px;
-            i {
-                color: var(--color-primario);
-                font-size: 60px;
-
-            }
-            span {
-                color: var(--color-primario);
-                font-size: 25px;
-                margin-top: 20px;
-                font-weight: lighter;
-            }
-        }
-    }
+  }
 }
 
 .contenedor-galeria {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 80px 0;
-    .galeria-img {
-        max-width: 350px;
-        max-height: 250px;
-        margin-right: 20px;
-        img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 0;
+  .galeria-img {
+    max-width: 350px;
+    max-height: 250px;
+    margin-right: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.5s;
+    img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: all 0.5s;
+        &:hover {
+            transform: scale(1.2);
         }
-    }
+      }    
+  }
 }
 
 .contenedor-footer {
-    background: var(--bg-section);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100px;
-    .box-footer {
-        span{
-            color: var(--color-primario);
-            font-size: 20px;
-        }
+  background: var(--bg-section);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+  .box-footer {
+    span {
+      color: var(--color-primario);
+      font-size: 1.25rem;
     }
+  }
 }
 
-@media (300px <= width <= 481px) {
-    .landing-info {
-        flex-direction: column;
+@media (300px <= width <= 768px) {
+  .landing-info {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  .contendor-caracteristicas {
+    padding: 40px 20px;
+    .titulo-caracteristicas {
+      h2 {
+        font-size: 2rem;
+      }
     }
-    .contendor-caracteristicas {
-        padding: 40px 0;
-        .contenedor-img-caracteristicas {
-            flex-direction: column;
-        }
+    .contenedor-img-caracteristicas {
+      flex-direction: column;
     }
+  }
 
-    .contenedor-galeria {
-        flex-direction: column;
-        .galeria-img {
-            margin-bottom: 20px;
-            margin-right: 0;
-        }
+  .contenedor-galeria {
+    flex-direction: column;
+    padding: 40px 20px;
+    .galeria-img {
+      margin-bottom: 20px;
+      margin-right: 0;
     }
+  }
+  .contenedor-footer {
+    .box-footer {
+      span {
+        font-size: 0.5rem;
+      }
+    }
+  }
 }
